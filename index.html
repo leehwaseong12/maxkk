@@ -1049,7 +1049,7 @@ async function submitReport(){
   const btn=document.getElementById('reportSubmitBtn'); btn.disabled=true; btn.textContent='제출 중…';
   try{
     await db.collection('reports').add({place,type,detail,name:name||'익명',phone:phone||'-',status:'신규',createdAt:firebase.firestore.FieldValue.serverTimestamp()});
-    ok.textContent='✅ 신고가 접수되었습니다. 안전관리팀이 신속히 조치하겠습니다.'; ok.style.display='block';
+    ok.textContent='✅ 신고가 접수되었습니다.'; ok.style.display='block';
     ['rPlace','rType','rDetail','rName','rPhone'].forEach(id=>{ document.getElementById(id).value=''; });
   }catch(e){ err.textContent='❌ Firebase 오류: '+e.message; err.style.display='block'; console.error(e); }
   finally{ btn.disabled=false; btn.textContent='신고 제출 ✅'; }
